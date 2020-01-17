@@ -6,4 +6,4 @@
 
   roles:
     - role: bootstrap
-      bootstrap_wait_for_host: yes
+      bootstrap_wait_for_host: true

@@ -11,11 +11,9 @@ lint:
     config-file: molecule/default/tests/yaml-int.yml
 platforms:
   - name: "ansible-role-ruby-${image:-debian}-${tag:-latest}"
-#    registry:
-#      url: myPRIVATE_register
     image: "${namespace:-registry.hub.docker.com/library}/${image:-debian}:${tag:-latest}"
-    pre_build_image: yes
-    privileged: True
+    pre_build_image: true
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
@@ -23,8 +21,6 @@ provisioner:
   playbooks:
     converge: ../resources/default.yml
     prepare: ../resources/prepare.yml
-#### With verifier ansible
-#    verify: ../resources/verify.yml
   lint:
     name: ansible-lint
 scenario:
@@ -54,8 +50,3 @@ verifier:
   directory: ../default/tests/
   lint:
     name: flake8
-#### OR ####
-#verifier:
-#  name: ansible
-#  lint:
-#    name: ansible-lint
